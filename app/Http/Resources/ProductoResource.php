@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Http\Resources;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class ProductoResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @return array<string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        return [
+            'id'          => $this->id,
+            'nombre'      => $this->nombre,
+            'descripcion' => $this->descripcion,
+            'precio'      => $this->precio,
+            'stock'       => $this->stock,
+            // Genera la URL pública completa para que el frontend la muestre directamente
+            'imagen_url'  => $this->imagen 
+                ? asset('storage/' . $this->imagen) 
+                : null,
+            'created_at'  => $this->created_at,
+        ];
+    }
+}
