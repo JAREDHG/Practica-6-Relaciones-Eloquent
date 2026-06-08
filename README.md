@@ -1,29 +1,27 @@
-# Práctica 05: Proyecto Integrador
+# Práctica 06: Relaciones Eloquent
 
-Proyecto integrador desarrollado como una Single Page Application (SPA), utilizando **Laravel** para el backend (API REST) y **Vue.js** para el frontend.
+Proyecto enfocado en la modelación de datos relacionales mediante Eloquent ORM de Laravel, permitiendo una arquitectura de productos categorizados con gestión de API anidada.   
 
 ## Descripción del Proyecto
-Este sistema centraliza la gestión de inventario y el flujo de ventas. Integra **Pinia** para la gestión reactiva del estado, **Laravel Sanctum** para la seguridad de la API y un **Panel Administrativo** protegido mediante control de roles (RBAC).
+Extenderás la aplicación de productos para organizarlos en categorías. Un producto pertenece a una categoría (belongsTo) y una categoría tiene muchos productos (hasMany). Vue mostrará el catálogo agrupado y permitirá filtrar por categoría.
 
 ## Tecnologías Utilizadas
 
-### Frontend
-- **Vue 3 (Vite):** Interfaz reactiva y moderna.
-- **Pinia:** Gestión de estado global (Carrito, autenticación y sesión).
-- **Axios:** Consumo de servicios RESTful con manejo de estados de carga.
-- **Bootstrap 5:** Diseño responsivo y componentes de UI profesional.
-
 ### Backend
-- **Laravel 10:** API RESTful.
-- **Laravel Sanctum:** Protección de endpoints y gestión de tokens.
-- **MariaDB:** Base de datos relacional con control de usuarios y roles.
+- **Laravel 10:** Eloquent ORM para modelado de relaciones.
+- **API Resources:** Transformación de datos mediante recursos anidados para respuestas JSON estructuradas. 
+- **Seeding:** Carga automatizada de datos de prueba utilizando Faker.
 
-## Características Implementadas (Parte D)
-- **Validación en Frontend:** Verificación de datos antes del envío en formularios.
-- **UX Profesional:** Implementación de *loading spinners* y alertas de éxito/error con auto-cierre.
-- **Paginación Dinámica:** Catálogo de productos eficiente (10 ítems por vista).
-- **Seguridad y Roles:** Panel administrativo protegido; acceso restringido solo para administradores.
-- **Persistencia:** Gestión de estado global con sincronización en `localStorage`.
+### Frontend
+- **Vue 3 (Vite):** Implementación de navegación por pestañas (tabs) para el filtrado de productos.  
+- **Axios:** Consumo dinámico de endpoints categorizados.  
+
+## Características Implementadas
+- **Integridad Referencial:** Implementación de claves foráneas con restricción nullOnDelete para asegurar la estabilidad de la base de datos.  
+- **Relaciones Eloquent:** Definición clara de la relación uno a muchos entre categorías y productos.  
+- **Catálogo Agrupado:** Interfaz de usuario con filtrado dinámico mediante tabs, permitiendo una experiencia de compra organizada.  
+- **Optimización de API:** Uso de eager loading en controladores para reducir las consultas a base de datos y mejorar la velocidad de respuesta.  
+- **Formularios Reactivos:** Selector inteligente de categorías integrado en el flujo de creación y edición de productos.  
 
 ## Instrucciones de Instalación
 
@@ -33,8 +31,7 @@ cd backend
 composer install
 cp .env.example .env
 # Configura DB_DATABASE en .env
-php artisan key:generate
-php artisan migrate
+php artisan migrate:fresh --seed --seeder=CategoriaProductoSeeder
 php artisan storage:link
 php artisan serve
 ```

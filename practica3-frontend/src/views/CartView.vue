@@ -81,17 +81,14 @@ import { useRouter } from 'vue-router'
 const carrito = useCarritoStore()
 const router = useRouter()
 
-// Lógica de confirmación para vaciar el carrito
 const confirmarVaciar = () => {
   if (confirm('¿Estás seguro de que deseas vaciar todo el carrito?')) {
     carrito.vaciar()
   }
 }
 
-// Lógica para finalizar la compra (por ahora un alert, preparándolo para el punto 4.6)
 const finalizarCompra = () => {
   alert('Procesando compra... ¡Gracias por tu pedido!')
-  // Por ahora solo lo vaciamos simulando que se completó
   carrito.vaciar()
   router.push('/')
 }

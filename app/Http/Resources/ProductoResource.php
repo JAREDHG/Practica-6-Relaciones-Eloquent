@@ -20,11 +20,13 @@ class ProductoResource extends JsonResource
             'descripcion' => $this->descripcion,
             'precio'      => $this->precio,
             'stock'       => $this->stock,
-            // Genera la URL pública completa para que el frontend la muestre directamente
             'imagen_url'  => $this->imagen 
                 ? asset('storage/' . $this->imagen) 
                 : null,
             'created_at'  => $this->created_at,
+            'categoria'   => new CategoriaResource(
+            $this->whenLoaded('categoria')
+            ),
         ];
     }
 }
